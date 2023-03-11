@@ -353,7 +353,7 @@ def existence_check(text, list, err, msg, ignore_case=True, str=False,
     rx = "|".join(regex.format(w) for w in list)
     for m in re.finditer(rx, text, flags=flags):
         txt = m.group(0).strip()
-        if any([re.search(exception, txt) for exception in exceptions]):
+        if any([re.search(exception, txt, flags=flags) for exception in exceptions]):
             continue
         errors.append((
             m.start() + 1 + offset,
